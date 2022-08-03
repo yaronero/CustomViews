@@ -6,15 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.customviews.Rectangle
-        android:layout_width="300dp"
-        android:layout_height="250dp"
-        app:borderColor="@color/teal_700"
-        app:borderRadius="20dp"
-        app:borderWidth="8dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_rectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="Rectangle" />
+
+        <Button
+            android:id="@+id/btn_custom_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Custom Layout" />
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.customviews
+package com.example.customviews.views
 
 import android.content.Context
 import android.graphics.*
@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
+import com.example.customviews.R
 
 class Rectangle @JvmOverloads constructor(
     context: Context,
