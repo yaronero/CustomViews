@@ -1,7 +1,10 @@
 package com.example.customviews.views
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
@@ -15,7 +18,9 @@ class Rectangle @JvmOverloads constructor(
 ) : View(context, attrs, defaultStyle) {
 
     private var rect = RectF(0F, 0F, DEFAULT_SIZE.toFloat(), DEFAULT_SIZE.toFloat())
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    private var fillPaint = Paint().apply { style = Paint.Style.FILL }
+    private var strokePaint = Paint().apply { style = Paint.Style.STROKE }
 
     @Px
     private var borderRadius = DEFAULT_RADIUS
@@ -46,8 +51,11 @@ class Rectangle @JvmOverloads constructor(
         val width = setupSize(widthMeasureSpec)
         val height = setupSize(heightMeasureSpec)
         setMeasuredDimension(width, height)
-        rect.right = width.toFloat()
-        rect.bottom = height.toFloat()
+        val halfBorderWidth = borderWidth / 2
+        rect.left = halfBorderWidth
+        rect.top = halfBorderWidth
+        rect.right = width.toFloat() - halfBorderWidth
+        rect.bottom = height.toFloat() - halfBorderWidth
     }
 
     private fun setupSize(size: Int): Int {
@@ -61,20 +69,12 @@ class Rectangle @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paint.style = Paint.Style.FILL
-        paint.color = Color.GREEN
-        canvas?.drawRoundRect(rect, borderRadius, borderRadius, paint)
+        fillPaint.color = Color.GREEN
+        canvas?.drawRoundRect(rect, borderRadius, borderRadius, fillPaint)
 
-        val halfBorderWidth = borderWidth / 2
-        rect.top += halfBorderWidth / 2
-        rect.left += halfBorderWidth / 2
-        rect.right -= halfBorderWidth / 2
-        rect.bottom -= halfBorderWidth / 2
-
-        paint.style = Paint.Style.STROKE
-        paint.color = borderColor
-        paint.strokeWidth = halfBorderWidth
-        canvas?.drawRoundRect(rect, borderRadius, borderRadius, paint)
+        strokePaint.color = borderColor
+        strokePaint.strokeWidth = borderWidth
+        canvas?.drawRoundRect(rect, borderRadius, borderRadius, strokePaint)
     }
 
     companion object {

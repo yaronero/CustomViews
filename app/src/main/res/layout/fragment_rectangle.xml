@@ -11,7 +11,7 @@
         android:layout_height="250dp"
         app:borderColor="@color/teal_700"
         app:borderRadius="20dp"
-        app:borderWidth="8dp"
+        app:borderWidth="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
