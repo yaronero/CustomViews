@@ -5,4 +5,13 @@
     android:id="@+id/vertical_custom_layout"
     android:background="@color/white">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Also text"
+        android:textSize="18sp"
+        android:padding="4dp"
+        android:textColor="#ffffff"
+        android:background="#000000"/>
+
 </com.example.customviews.views.VerticalTextLinearLayout>

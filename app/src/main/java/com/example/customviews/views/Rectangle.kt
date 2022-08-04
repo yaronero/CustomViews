@@ -19,7 +19,10 @@ class Rectangle @JvmOverloads constructor(
 
     private var rect = RectF(0F, 0F, DEFAULT_SIZE.toFloat(), DEFAULT_SIZE.toFloat())
 
-    private var fillPaint = Paint().apply { style = Paint.Style.FILL }
+    private var fillPaint = Paint().apply {
+        style = Paint.Style.FILL
+        color = Color.GREEN
+    }
     private var strokePaint = Paint().apply { style = Paint.Style.STROKE }
 
     @Px
@@ -51,11 +54,15 @@ class Rectangle @JvmOverloads constructor(
         val width = setupSize(widthMeasureSpec)
         val height = setupSize(heightMeasureSpec)
         setMeasuredDimension(width, height)
+
         val halfBorderWidth = borderWidth / 2
         rect.left = halfBorderWidth
         rect.top = halfBorderWidth
         rect.right = width.toFloat() - halfBorderWidth
         rect.bottom = height.toFloat() - halfBorderWidth
+
+        strokePaint.color = borderColor
+        strokePaint.strokeWidth = borderWidth
     }
 
     private fun setupSize(size: Int): Int {
@@ -69,11 +76,9 @@ class Rectangle @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        fillPaint.color = Color.GREEN
         canvas?.drawRoundRect(rect, borderRadius, borderRadius, fillPaint)
 
-        strokePaint.color = borderColor
-        strokePaint.strokeWidth = borderWidth
+
         canvas?.drawRoundRect(rect, borderRadius, borderRadius, strokePaint)
     }
 
